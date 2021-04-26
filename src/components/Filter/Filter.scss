@@ -1,0 +1,10 @@
+@import 'styles/shared.scss';
+
+.Filter__input {
+  @extend %input-field;
+  &:focus {
+    outline: none;
+    border: 2px solid transparent;
+    box-shadow: 2px 2px 6px gray;
+  }
+}

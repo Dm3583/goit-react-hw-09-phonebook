@@ -1,0 +1,20 @@
+.Form__container {
+  margin: 0 auto;
+  width: 90%;
+  @media screen and (min-width: 768px) {
+    width: 65%;
+  }
+  @media screen and (min-width: 960px) {
+    width: 55%;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 50%;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 40%;
+  }
+}
+
+.Align__header {
+  text-align: center;
+}

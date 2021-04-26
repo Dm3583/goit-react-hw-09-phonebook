@@ -1,0 +1,34 @@
+{
+  "contacts": [
+    {
+      "id": "ab7b4980-7871-4d74-a382-c346dd4c6455",
+      "name": "m",
+      "number": "1345456745"
+    },
+    {
+      "id": "9f3e949a-5384-473e-86b9-4c1c17c9c454",
+      "name": "dsfgg",
+      "number": "23454567234"
+    },
+    {
+      "id": "55a69447-dcb8-4679-a7f4-564ef36043b4",
+      "name": "sdfgdfg",
+      "number": "2345645745"
+    },
+    {
+      "id": "e496cc7d-d73e-4326-8272-ce4a99a18f54",
+      "name": "xcvbfh",
+      "number": "4565467547"
+    },
+    {
+      "id": "b44b6766-9a40-4682-bb40-c1a55db8bdd6",
+      "name": "vbmn",
+      "number": "24565682456"
+    },
+    {
+      "id": "a809160b-601d-494e-90bb-c9471e8cfd4f",
+      "name": "wert",
+      "number": "245634245645"
+    }
+  ]
+}

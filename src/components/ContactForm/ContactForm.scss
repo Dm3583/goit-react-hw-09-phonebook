@@ -1,0 +1,44 @@
+@import './styles/shared';
+
+.ContactForm {
+  border: 1px solid $dark;
+  padding: 10px;
+  width: 100%;
+  border-radius: 3px;
+  color: $dark;
+  // @media screen and (min-width: 1280px){
+  //   max-width: 500px;
+  // }
+}
+
+.ContactForm__label {
+  margin-bottom: 0px;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.ContactForm__btnWrapper {
+  margin-top: 10px;
+}
+
+.ContactForm__text-input {
+  @extend %input-field;
+
+  &:active,
+  &:focus {
+    outline: transparent;
+    border: 2px solid transparent;
+    box-shadow: 2px 2px 6px rgb(134, 133, 133);
+  }
+}
+
+.ContactForm__btn {
+  @extend %button;
+  width: 170px;
+  transition: all $timing-function 0.25s;
+  &:hover,
+  &:focus {
+    background-color: $secondary-btn-color;
+    box-shadow: 3px 3px 3px $primary-btn-color;
+  }
+}
