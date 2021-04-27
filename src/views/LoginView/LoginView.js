@@ -39,30 +39,6 @@ class LoginView extends Component {
     return (
       <>
         <h1 className="Align__header">Login</h1>
-        {/* <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              placeholder="Enter email"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Enter password"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </form> */}
-
         <Form
           autoComplete="off"
           onSubmit={handleSubmit}

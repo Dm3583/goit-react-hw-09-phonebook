@@ -1,13 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
 import { Button, Badge } from 'react-bootstrap';
 import './UserMenu.scss';
 
-const UserMenu = ({ name, logout }) => {
+const UserMenu = () => {
+  const dispatch = useDispatch();
+
+  const name = useSelector(authSelectors.getUserName);
+
+  const logout = useCallback(() => dispatch(authOperations.logoutUser()), [
+    dispatch,
+  ]);
+
   return (
     <>
-      {/* <span>Welcome {name}</span> */}
       <h2>
         Welcome{' '}
         <Badge className="Badge__text" variant="primary">
@@ -21,12 +28,4 @@ const UserMenu = ({ name, logout }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  name: authSelectors.getUserName(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(authOperations.logoutUser()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
+export default UserMenu;

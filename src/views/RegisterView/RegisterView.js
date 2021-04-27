@@ -28,7 +28,6 @@ class RegisterView extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const user = { ...this.state };
-    // console.log(user);
     this.props.register(user);
     this.setState({ ...initialState });
   };
@@ -39,39 +38,6 @@ class RegisterView extends Component {
     return (
       <>
         <h1 className="Align__header">Register</h1>
-        {/* <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>
-            <input
-              type="text"
-              name="name"
-              value={name}
-              placeholder="Enter your name"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              placeholder="Enter email"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Enter password"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </form> */}
         <Form
           autoComplete="off"
           onSubmit={handleSubmit}
