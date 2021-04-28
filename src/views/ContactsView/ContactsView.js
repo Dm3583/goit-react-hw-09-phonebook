@@ -17,6 +17,10 @@ function ContactsView() {
     setContactId(id);
   }, []);
 
+  // const setCurrentId = id => setContactId(id);
+
+  // const getContactId = () => contactId;
+
   const getContactId = useCallback(() => {
     return contactId;
   }, [contactId]);
@@ -35,7 +39,7 @@ function ContactsView() {
               buttonLabel="Update contact"
               toggleModal={toggleModal}
               getContactId={getContactId}
-              updateContact
+              toUpdateContact
             />
           </Modal>
         )}

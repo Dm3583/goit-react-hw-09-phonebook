@@ -6,13 +6,23 @@ import './ContactForm.scss';
 import { contactsOperations, contactsSelectors } from '../../redux/phonebook';
 import { Button } from 'react-bootstrap';
 
-const ContactForm = ({ buttonLabel, toggleModal, getContactId }) => {
+const ContactForm = ({
+  buttonLabel,
+  toggleModal,
+  getContactId,
+  toUpdateContact,
+}) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const allContacts = useSelector(contactsSelectors.getAllContacts);
+
+  const fetchContacts = () => dispatch(contactsOperations.fetchContacts());
+
+  const updateContact = contact =>
+    dispatch(contactsOperations.updateContact(contact));
 
   useEffect(() => {
     const getOldContact = id => {
@@ -23,19 +33,16 @@ const ContactForm = ({ buttonLabel, toggleModal, getContactId }) => {
         }
       });
     };
-    if (updateContact && getContactId) {
+    if (getContactId && toUpdateContact) {
       const id = getContactId();
       getOldContact(id);
     }
-  }, [allContacts]);
+  }, [getContactId, toUpdateContact]);
 
   const addContact = useCallback(
     contact => dispatch(contactsOperations.addContact(contact)),
     [dispatch],
   );
-  const updateContact = contact =>
-    dispatch(contactsOperations.updateContact(contact));
-  const fetchContacts = () => dispatch(contactsOperations.fetchContacts());
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -79,7 +86,7 @@ const ContactForm = ({ buttonLabel, toggleModal, getContactId }) => {
       return;
     }
 
-    if (updateContact && toggleModal) {
+    if (toUpdateContact && toggleModal) {
       const contact = createContact(name, number);
       const id = getContactId();
       updateContact({ id, contact });
@@ -136,11 +143,13 @@ ContactForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   toggleModal: PropTypes.func,
   getContactId: PropTypes.func,
+  toUpdateContact: PropTypes.bool,
 };
 
 ContactForm.defaultProps = {
   toggleModal: null,
   getContactId: null,
+  toUpdateContact: false,
 };
 
 export default ContactForm;

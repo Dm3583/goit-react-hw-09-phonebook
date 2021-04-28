@@ -8,9 +8,10 @@ import { contactsOperations, contactsSelectors } from '../../redux/phonebook';
 const ContactsList = ({ toggleModal, setContactId }) => {
   const dispatch = useDispatch();
 
+  const contacts = useSelector(contactsSelectors.getFilteredContacts);
+
   useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
 
-  const contacts = useSelector(contactsSelectors.getFilteredContacts);
   const isLoadingContacts = useSelector(contactsSelectors.getLoading);
   const isError = useSelector(contactsSelectors.getError);
 

@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 function ListItem({ setContactId, toggleModal, contact, deleteContact }) {
   const updateContactInModal = useCallback(
     id => {
+      console.log(id);
       setContactId(id);
       toggleModal();
     },

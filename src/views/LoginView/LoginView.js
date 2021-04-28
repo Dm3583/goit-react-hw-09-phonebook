@@ -1,83 +1,77 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import { Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './LoginView.scss';
 
-const initialState = {
-  email: '',
-  password: '',
-};
+function LoginView() {
+  const dispatch = useDispatch();
 
-class LoginView extends Component {
-  static propTypes = {
-    login: PropTypes.func.isRequired,
-  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  state = {
-    email: '',
-    password: '',
-  };
-
-  handleChange = e => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    switch (name) {
+      case 'email':
+        setEmail(value);
+        break;
+      case 'password':
+        setPassword(value);
+        break;
+      default:
+        console.warn(`This form doesn't process a field with name - ${name}`);
+    }
   };
 
-  handleSubmit = e => {
+  const login = user => dispatch(authOperations.loginUser(user));
+
+  const handleSubmit = e => {
     e.preventDefault();
-    const user = { ...this.state };
-    this.props.login(user);
-    this.setState({ ...initialState });
+    const user = { email, password };
+    login(user);
+    setEmail('');
+    setPassword('');
   };
 
-  render() {
-    const { handleChange, handleSubmit } = this;
-    const { email, password } = this.state;
-    console.log('LOGIN VIEW');
-    return (
-      <>
-        <h1 className="Align__header">Login</h1>
-        <Form
-          autoComplete="off"
-          onSubmit={handleSubmit}
-          className="Form__container"
-        >
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={email}
-              placeholder="Enter email"
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+  return (
+    <>
+      <h1 className="Align__header">Login</h1>
+      <Form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className="Form__container"
+      >
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Enter email"
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </>
-    );
-  }
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </>
+  );
 }
 
-const mapDispatchToProps = dispatch => ({
-  login: user => dispatch(authOperations.loginUser(user)),
-});
-
-export default connect(null, mapDispatchToProps)(LoginView);
+export default LoginView;

@@ -35,26 +35,20 @@ function App() {
 
       <Switch>
         <Suspense fallback={<h1>Loading ...</h1>}>
-          <PublicRoute path="/" exact component={HomeView} />
-          <PublicRoute
-            path="/register"
-            restricted
-            redirectTo="/contacts"
-            component={RegisterView}
-          />
+          <PublicRoute path="/" exact>
+            <HomeView />
+          </PublicRoute>
+          <PublicRoute path="/register" restricted redirectTo="/contacts">
+            <RegisterView />
+          </PublicRoute>
           {!isGettingCurrentUser && (
-            <PublicRoute
-              path="/login"
-              restricted
-              redirectTo="/contacts"
-              component={LoginView}
-            />
+            <PublicRoute path="/login" restricted redirectTo="/contacts">
+              <LoginView />
+            </PublicRoute>
           )}
-          <PrivateRoute
-            path="/contacts"
-            redirectTo="/login"
-            component={ContactsView}
-          />
+          <PrivateRoute path="/contacts" redirectTo="/login">
+            <ContactsView />
+          </PrivateRoute>
         </Suspense>
       </Switch>
     </div>
